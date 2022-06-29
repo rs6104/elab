@@ -1,0 +1,707 @@
+SESSION 6: 
+
+Given a chess board having NxN cells, you need to place N queens on the board in such
+
+#include<iostream>
+using namespace std;
+ 
+int n;
+bool grid[10][10];
+ 
+bool isSafe(int row, int col){
+  int i,j;
+  for(i=0;i<row;++i) if(grid[i][col]) return false;
+  for(i=row,j=col;i>=0 and j>=0;--i,--j) if(grid[i][j]) return false;
+  for(i=row,j=col;i>=0 and j<n;--i,++j) if(grid[i][j]) return false;
+  return true;
+}
+ 
+bool solveQueen(int row){
+  if(row>=n) return true;
+  for(int col=0;col<n;++col){
+    if(isSafe(row,col)){
+      grid[row][col]=true;
+      if(solveQueen(row+1)) return true;
+      grid[row][col]=false;
+    }
+  }
+  return false;
+}
+ 
+int main(){
+  cin>>n;
+  int i;
+  if(solveQueen(0)){
+    for(i=0;i<n;++i){
+      for(int j=0;j<n;++j) cout<<grid[i][j]<<" ";
+      cout<<endl;
+    }
+  }
+  else cout<<"Not possible\n";
+  return 0;
+}
+
+
+
+Chef started watching a movie that runs for a total of XX minutes. 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve()
+{
+  int x,y;
+  cin>>x>>y;
+
+  cout<<(x-y)+y/2<<"\n";
+}
+
+int main()
+{
+  int t;
+  t=1;
+  while(t--)
+solve();
+}
+
+
+Samu is playing a shooting game in play station. 
+
+#include<bits/stdc++.h>
+using namespace std;
+#define MAXN 1010
+#define MAXW 1010
+double DP[MAXN][MAXW];
+int main(){
+	int t;
+	cin>>t;
+	while(t--){
+		int X,Y,N,W,P1,P2;
+		cin>>X>>Y>>N>>W>>P1>>P2;
+		for(int i=0;i<=N;i++){
+			for(int j=0;j<=W;j++){
+				DP[i][j]=0;
+			}
+		}
+		double p1 = 0.01 * P1;
+		double p2 = 0.01 * P2;
+		for (int i=0;i<=N;i++) 
+      		DP[i][0] = 1; 
+    	for (int i=1;i<=W;i++) 
+      		DP[0][i] = 0; 
+    	for (int i=1;i<=N;i++){ 
+      		for (int j=1;j<=W;j++) { 
+        		DP[i][j] = max(p1*DP[i-1][max(j-X,0)] + (1-p1)*DP[i-1][max(j,0)], p2*DP[i-1][max(j-Y,0)] + (1-p2)*DP[i-1][max(j,0)]); 
+      		} 
+      	}
+      	printf("%.6f\n",DP[N][W]*100);
+ 
+	}
+}
+
+
+Given integer N, you need to find four integers A,B,C,D, such that they’re all factors
+
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){}
+int main(){
+    int t; cin>>t; while(t--){
+    long long n; cin>>n;
+    if(n&1 or n<4) cout<<"-1\n";
+    else if(!(n%4)) cout<<((n>>2)*(n>>2)*(n>>2)*(n>>2))<<'\n';
+    else if(!(n%6)) cout<<((n/6)*(n/6)*(n/3)*(n/3))<<'\n';
+    else if(!(n%10)) cout<<((n/10)*(n/5)*(n/5)*(n>>1))<<'\n';
+    else cout<<"-1\n";
+  }
+  return 0;
+}
+
+
+There is a mysterious temple in mysteryland. The door of the temple is always
+
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+int arr [100 + 5];
+bool flag;
+bool vis [100 + 5][10000 + 5];
+int sum , n;
+ 
+void rec(int index, int tot){
+ 
+    if(index == n){                     // base case
+ 
+        if(tot == sum / 2) flag = true;     //valid case
+        return;
+    }
+ 
+    if(vis[index][tot]) return;             // check if this state visited before
+ 
+    rec(index + 1, tot + arr[index]);       // add this item to first box
+    rec(index + 1, tot);                    // add this item to second box
+    vis[index][tot] = true;                 // mark this state is visited
+}
+ 
+int main()
+{
+    int t;
+ 
+    cin >> t;
+ 
+    while(t--){
+ 
+        cin >> n;
+ 
+        sum = 0;
+        flag = false;
+        memset(vis, false, sizeof vis);
+ 
+        for(int i = 0; i < n; i++){
+ 
+            cin >> arr[i];
+            sum += arr[i];
+        }
+ 
+        if(sum % 2 != 0) cout << "NO\n";                // invalid case
+        else {
+ 
+            rec(0 , 0);                                 
+            if(flag) cout << "YES\n";
+            else cout << "NO\n";
+        }
+    }
+ 
+    return 0;
+}
+
+
+
+You are given three arrays a1…n,b1…n,c1…n and two numbers M and K. 
+
+#include <iostream>
+#include<bits/stdc++.h>
+#define f1 for(i=0;i<n;i++)
+using namespace std;
+long long int min(long long int x, long long int y){
+	if(x < y)
+	    return x;
+	else
+	    return y;
+}
+int main(){
+	int n, m, K;
+	cin >> n >> m >> K;
+	long long int a[n],b[n],c[n];
+	long long int i,j,l;
+	int p,T = 0;
+	for(i = 0; i < n; i++)
+	cin >> a[i] >> b[i] >> c[i];
+	long long int lx,rx,ly,ry,lz,rz;
+	cin >> lx >> rx;
+	cin >> ly >> ry;
+	cin >> lz >> rz;
+	for(i = lx; i < min(rx, lx + m); i++){
+		for(j = ly; j < min(ry,ly + m);j++){
+			for(l = lz;l < min(rz,lz + m);l++){
+				T=0;
+				for(p = 0; p < n; p++){
+					if((a[p] * i + b[p] * j- c[p] * l) % m == 0)
+					T++;
+				}
+				if(T==K)
+				break;
+			}
+			if(l < min(rz,lz + m))
+			break;
+		}
+		if(j < min(ry,ly + m))
+		break;
+ 
+	}
+	if(i < min(rx, lx + m)){
+		cout << i << " " << j << " " << l;
+	}
+	else
+	cout << "-1" << endl;
+}
+
+
+The end semester exams are now approaching. Ritu is the computer 
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int arr[1001][1001];
+int dp[1001][1001];
+const int mod = 1e9+7;
+void solve(){
+    cout<<"for(i=0;i<N;i++)";}
+long int decrease_path(int i , int j,int n)
+{
+	if(arr[i][j]==1) return 1;
+	if(dp[i][j]!=-1) return dp[i][j];
+	long int a = (i>0 && arr[i-1][j]<arr[i][j])?decrease_path(i-1,j,n):0;
+	long int b = (j>0 && arr[i][j-1]<arr[i][j])?decrease_path(i,j-1,n):0;
+	long int c = (i<n-1 && arr[i+1][j]<arr[i][j])?decrease_path(i+1,j,n):0;
+	long int d = (j<n-1 && arr[i][j+1]<arr[i][j])?decrease_path(i,j+1,n):0;
+	dp[i][j] = a+b+c+d+1;
+	dp[i][j]%=mod;
+	return dp[i][j];
+}
+int main()
+{
+	cin.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	int n;
+	cin>>n;
+	for(int i = 0;i<n;i++)
+	{
+		for(int j = 0;j<n;j++)
+		{
+			cin>>arr[i][j];
+		}
+	}
+	memset(dp,-1,sizeof(dp));
+	long int count  = 0;
+	for(int i = 0;i<n;i++)
+	{
+		for(int j = 0;j<n;j++)
+		{
+			long int a = decrease_path(i,j,n);
+			count+=a;
+			count%=mod;
+		}
+	}
+	cout<<count<<'\n';
+}
+
+
+
+You are given two numbers n and k. for each number in the interval [1,n], your task is to 
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+using ll = long long;
+ 
+long long f(int n, int k) {
+    if (n == 0) return 0;
+    long long res = (n/k);
+    return f(n/k, k) + n * (ll)(n+1) / 2ll - (res * (res + 1) / 2ll) * k;
+}                   
+ 
+int main () {
+    int T = 1;
+    scanf("%d", &T);
+    assert(T >= 1 && T <= 300000);
+    while(T--) {
+ 
+        int n, k;
+        scanf("%d%d", &n, &k);
+        assert(n <= 1e9);
+        assert(k >= 2 && k <= 1e9);
+ 
+        printf("%lld\n", f(n, k));
+        
+    }
+ 
+    return 0;
+}
+
+
+Lucky numbers are defined as the numbers consisting only of digits 3 and 5. 
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+string solve(string& s)
+{
+    int n = s.size(), i = 0;
+    while(i < n && (s[i] == '3' || s[i] == '5'))
+    ++i;
+    if(i < n && (s[i] < '5'))
+    {
+        if(s[i] == '4')
+            s[i] = '5';
+        else
+            s[i]='3';
+        ++i;
+        while(i<n)
+        {
+            s[i] = '3';
+            ++i;
+        }
+    }
+    else
+    {
+        while(i >= 0 && (s[i] != '3'))
+        	--i;
+        if(i < 0)
+            return string(n + 1, '3');
+        s[i] = '5';
+        ++i;
+        while(i < n)
+        {
+            s[i] = '3';
+            ++i;
+        }
+    }
+    return s;
+}
+ 
+int main()
+{
+	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    int t; 
+	cin >> t; 
+	while(t--)
+    {
+    	string s;
+    	cin >> s;
+    	cout << solve(s) << endl;
+    }
+}
+
+
+
+
+
+SESSION 7: GRAPH COLOURING:- 
+
+Adiththi likes drawing. She has drawn many graphs already, both directed and not.
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ggg int find(int p) unite(int p,int q) cin>>u>>v;
+int i,j,x,y,n,m,ans,f[502],a[502];
+int find(int x){return (f[x]==x)?x:f[x]=find(f[x]);}
+int main (){
+	scanf("%d %d",&n,&m);
+	if (m>n) return printf("NO\n"),0;
+	for (i=1;i<=n;i++) f[i]=i;
+	for (i=1;i<=m;i++){
+		scanf("%d %d",&x,&y);a[x]++;a[y]++;
+		if (find(x)==find(y)&&i!=n) return printf("NO\n"),0;
+		f[find(x)]=find(y);
+	}
+	for (i=1;i<=n;i++)
+		if (a[i]>2) 
+			return printf("NO\n"),0;
+	printf("YES\n%d\n",n-m);
+	for (i=1;i<=n;i++)
+		while (a[i]<2){
+			ans=i+(n!=1);
+			for (j=ans;j<=n;j++)
+				if (a[j]<2&&(n<=2||m+1==n||find(i)!=find(j)))
+					{printf("%d %d\n",i,j);m++;a[i]++;a[j]++;f[find(i)]=find(j);break;}
+	}
+	return 0;
+}
+
+Nowadays the one-way traffic is introduced all over the world in order to improve
+
+#include<bits/stdc++.h>
+using namespace std;
+int s[105],e[105];
+int main(){
+	int n,ans=0,res=0;cin>>n;
+	while(n--){
+		int a,b,c;cin>>a>>b>>c;
+		if(s[a]||e[b])res+=c,s[b]=e[a]=1;
+		else s[a]=e[b]=1;
+		ans+=c;
+	}
+	cout<<min(res,ans-res);
+	
+}
+
+
+Bragadesh got a job as a system administrator in X corporation. 
+
+#include<bits/stdc++.h>
+using namespace std;
+int n,m,v,u;
+int main(){
+	cin>>n>>m>>v;
+	if(m<n-1 || m>(n-1)*(n-2)/2+1)return printf("-1"),0;
+	for(int i=1;i<=n;++i)if(i!=v)printf("%d %d\n",i,v),u=i;
+	m-=n-1;
+	if(m)for(int i=1;i<=n;++i)for(int j=i+1;j<=n;++j)if(i!=v && j!=u && i!=u && j!=v){
+		printf("%d %d\n",i,j);
+		m--;
+		if(!m)return 0;
+	}
+}
+
+
+We call two numbers x and y similar if they have the same parity 
+
+#include<bits/stdc++.h>
+#define solve int t,n,q,i,j,w,a[55],b[55]; while(t!=0) {
+int t,n,a[52],s,o,i;
+int main(){
+	for(scanf("%d",&t);t--;){
+		for(scanf("%d",&n),o=0;i<n;) scanf("%d",a+i), o+=a[i++]&1;
+		for(std::sort(a,a+n),s=0;--i;) s|=(a[i]-a[i-1]==1);
+		puts(o&1&(!s)?"NO":"YES");
+	}
+}
+
+
+
+One Egyptian boy called Aabid wants to present a string of beads to his friend
+
+#include <bits/stdc++.h>
+using namespace std;
+#define solve int beads(int len,int lim1,int lim2) cin>>n>>m;
+#define rep(i,s,t) for(I i=s;i<=t;++i)
+#define c(f) memset(f,-1,sizeof f);
+#define R return
+#define I int
+#define L long long
+L f[55][2][2],K,d;I a[55],n;
+L C(I l,I r,I x,I y){
+ if (l>r)R 1;L&F=f[l][x][y];if(~F)R F;F=0;
+ rep(i,0,1)rep(j,0,1)if(a[l]-!i&&a[r]-!j&&(l<r||i==j)&&(x||i<=j)&&(y||i<=(!j)))F+=C(l+1,r-1,x||(i<j),y||(i<!j));R F;
+}
+I main(){
+ cin>>n>>K;c(a)c(f)if(C(1,n,a[1]=0,0)<++K)R cout<<-1,0;
+ rep(i,2,n){c(f)d=C(1,n,a[i]=0,0);K-=(a[i]=(d<K))*d;}
+ rep(i,1,n)cout<<a[i];
+}
+
+
+Students of Winter Informatics School are going to live in a set of houses connected by underground passages.
+
+#include "bits/stdc++.h"
+using namespace std;
+#define mandatory cout<<"scanf("%d", &T); scanf("%d%d", &n, &m); while(T--)"
+#define pb push_back
+#define mp make_pair
+
+const int MX = 3e6 + 5;
+void solve2(){}
+
+int N, M;
+int col[MX];
+bool visited[MX];
+vector<int> adj[MX];
+
+
+void dfs(int at) {
+	col[at] = 1;
+	for (auto x: adj[at]) if (col[x]) col[at] = 0;
+	for (auto x: adj[at]) if (!visited[x]) {
+		visited[x] = 1;
+		dfs(x);
+	}
+}
+
+
+void solve() {
+	cin >> N >> M;
+	for (int i = 0; i <= N; i++) {
+		visited[i] = 0;
+		col[i] = 0;
+		adj[i].clear();
+	}
+	for (int i = 0; i < M; i++) {
+		int a, b; cin >> a >> b;
+		adj[a].pb(b), adj[b].pb(a);
+	}
+
+	visited[1] = 1; dfs(1);
+	for (int i = 1; i <= N; i++) if (!visited[i]) {
+		cout << "NO\n";
+		return;
+	}
+	vector<int> ans;
+	for (int i = 1; i <= N; i++) if (col[i]) ans.pb(i);
+	cout << "YES\n";
+	cout << (int)ans.size() << "\n";
+	for (auto x: ans) cout << x << " ";
+	cout << "\n";
+}
+
+
+int main() {
+	int t; cin >> t;
+	while (t--) {
+		solve();
+	}
+}
+
+
+During the break the schoolchildren, boys and girls, formed a queue of n people in the canteen. 
+
+#include<bits/stdc++.h>
+using namespace std;
+#define madatory cout<<"int i,k,n; while(k){ char a[n+3];"
+string s;
+int n,t,i;
+int main(){
+cin>>n>>t>>s;
+while(t--) for(i=0;i<n-1;i++) if(s[i]=='B'&&s[i+1]=='G'){swap(s[i],s[i+1]);i++;}
+cout<<s;
+}
+
+
+The houses are numbered from 1 to N. Underground water pipes connect these houses together. 
+
+#include<iostream>
+using namespace std;
+#define N 1010
+int a[N],w[N],b[N];
+int main()
+{
+	int n,p,x,y,z,i,t,min;
+	cin>>n>>p;
+	while(p--)
+	{
+		cin>>x>>y>>z;
+		a[x]=y;
+		w[x]=z;
+		b[x]++;
+		b[y]+=2;
+	}
+	for(t=0,i=1;i<=n;i++)if(b[i]==1)t++;
+	printf("%d\n",t);
+	for(i=1;i<=n;i++)if(b[i]==1)
+	{
+		min=w[i];
+		t=a[i];
+		while(a[t]!=0)
+		{
+			if(w[t]<min)min=w[t];
+			t=a[t];
+		}
+		printf("%d %d %d\n",i,t,min);
+	}
+	return 0;
+}
+
+
+Session 9 : SUM of Subset
+
+Palani goes to the Koyembedu Vegetables Market to buy some Vegetables. 
+
+#include<bits/stdc++.h>
+using namespace std;
+#define if hha
+int main()
+{
+    int i,t;
+    cin>>t;
+    while(t--){
+        int a[3];
+        for(i=0;i<3;i++)
+        cin>>a[i];
+        sort(a,a+3);
+        cout<<a[2]+a[1]<<endl;
+    }
+	return 0;
+}
+
+
+Mano went shopping and bought items worth X dollors
+
+#include <stdio.h>
+void solve(){}
+int main()
+{
+    int x,t;
+    scanf("%d",&t);
+    while(t--){
+        scanf("%d",&x);
+        printf("%d\n",100-x);
+    }
+	return 0;
+}
+
+Tesla recently found a new rectangular electric board that he would like to recycle
+
+#include<bits/stdc++.h>
+using namespace std;
+const int inf = 1012345678;
+int A[309][309];
+int H, W, K; bool ok[309][309][309];
+int main() {
+	int Q,rep;
+	cin >> Q;
+	for (rep = 1; rep <= Q; ++rep) {
+		cin >> H >> W >> K;
+		for (int i = 0; i < H; ++i) {
+			for (int j = 0; j < W; ++j) {
+				cin >> A[i][j];
+			}
+		}
+		for (int i = 0; i < H; ++i) {
+			for (int j = 0; j < W; ++j) {
+				int cl = inf, cr = -inf;
+				for (int k = j; k < W; ++k) {
+					cl = min(cl, A[i][k]);
+					cr = max(cr, A[i][k]);
+					if (cr - cl <= K) {
+						ok[i][j][k] = true;
+					}
+					else {
+						ok[i][j][k] = false;
+					}
+				}
+			}
+		}
+		int ans = 0;
+		for (int i = 0; i < W; ++i) {
+			for (int j = i; j < W; ++j) {
+				int cont = 0;
+				for (int k = 0; k < H; ++k) {
+					if (ok[k][i][j]) ++cont;
+					else cont = 0;
+					ans = max(ans, cont * (j - i + 1));
+				}
+			}
+		}
+		cout << ans << endl;
+	}
+	return 0;
+}
+
+
+Tamil New Year is approaching and thus Ganesan wants to buy some maha lactos for someone special.
+
+#include <stdio.h>
+void solve(){}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    for(int i=0;i<t;i++){
+        int a,b;
+        scanf("%d %d",&a,&b);
+        printf("%d\n",a/b);
+    }
+	return 0;
+}
+
+
+Mani bought N items from a Nilgiris super market. Although it is hard to carry all these items in hand,
+
+#include<iostream>
+using namespace std;
+void solve(){}
+int main()
+{
+    double n;
+    cin>>n;
+    while(n--){
+        int x;
+        cin>>x;
+        x%10==0 ? cout<<x/10<<endl : cout<<x/10+1<<endl;
+        //if(x%10==0)
+        //cout<<x/10<<endl;
+       // else
+       // cout<<x/10+1<<endl;
+    }
+}
