@@ -1,0 +1,217 @@
+simon has given n numbers a1
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N=200000;
+int n,k,x;
+long long z=1,a[N+9],pr[N+9],Ans;
+
+int main() {
+	cin>>n>>k>>x;
+	for (int i=1;i<=n;i++) {
+	    cin>>a[i];
+	    pr[i]=pr[i-1]|a[i];}
+	while (k--) z*=x;
+	long long sf=0;
+	for (int i=n;i>=1;i--) {
+		Ans=max(Ans,pr[i-1]|a[i]*z|sf);
+		sf|=a[i];
+	}
+	cout<<Ans<<endl;
+	return 0;
+	
+}
+
+Nandanan's company employed n people. 
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ans cin>>ans[0];cin>>a>>b>>c;
+#define f(n) for(int i=0;i<n;i++)
+void solve(){}
+int main(){
+	int n;cin>>n;
+	int a[n];f(n) cin>>a[i];
+	int M;cin>>M;
+	map<int,int> m;
+	while(M--){
+		int x,y,c;cin>>x>>y>>c;
+		if(m.find(y)==m.end())
+		    m[y]=c;
+		else if(c<m[y]) 
+		    m[y]=c;
+	}
+	if((int)m.size()==n-1){
+		long long int sum=0;
+		for(auto j : m){
+			sum+=j.second;
+		}
+		cout<<sum;
+	}
+	else cout<<-1;
+}
+
+
+Devika is addicted to meat! malik wants to keep 
+
+#include<iostream>
+using namespace std;
+#define f(n) for(n=n;n>0;--n)
+int main()
+{
+    int n,r=0,m=100,x,y;
+    cin>>n;
+    f(n){
+        cin>>x>>y;
+        if(y<m)
+        m=y;
+        r+=m*x;
+    }
+    printf("%d",r);
+}
+
+
+Students in a class are making towers of blocks. 
+
+#include<iostream>
+
+using namespace std;
+
+int m, n, x;
+int main()
+{
+	cin>>n>>m;
+	x = 1;
+	while((x/2) < n || (x/3) < m || x/2 + x/3 - x/6 < m+n)
+		++x;
+	cout << x;	
+	 return 0;
+}
+
+
+
+
+shiv has given a rebus of form ?+? 
+
+#include <bits/stdc++.h>
+using namespace std;
+int p = 1, n, j, a[105];
+char c;
+int main()
+{
+	a[j++] = 1;
+	while (cin>>c && c != '=')
+	{
+		if (c == '-') p--, a[j++] = -1;
+		if (c == '+') p++, a[j++] = 1;
+	}
+	cin>>n;
+	for(int i=0;i<j;i++)
+	{
+		if(a[i]>0)while (p<n && a[i]<n) a[i]++, p++;
+		else while (p>n&&a[i]<0 && a[i]>-n) a[i]--, p--;
+	}
+	if (p != n) { cout << "Impossible\n"; return 0; }
+	cout << "Possible\n";
+	for(int i=0;i<j;i++)
+	cout << (i ? (a[i]<0 ? "- " : "+ ") : "") << abs(a[i]) << " ";
+	cout << "= " << n;
+
+}
+
+
+
+
+It's a very unfortunate day for lavanya today 
+
+#include <bits/stdc++.h>
+using namespace std;
+#define res cin>>a[i],num+=a[i];
+#define f1 	for(int i=1;i<=n;i++)
+double n,v,a[25],b[25],sum,mx=1e9;
+int main(){
+	cin>>n>>v;
+	f1{
+		cin>>a[i];
+		sum+=a[i];
+	}
+	for(int i=1;i<=n;i++)
+		cin>>b[i];
+	for(int i=1;i<=n;i++)
+		mx=min(mx,b[i]/a[i]); 
+	cout << fixed<<setprecision(1)<<min(mx*sum,v);
+    return 0;
+}
+
+
+A stealing got into a matches warehouse and wants to steal 
+
+#include<bits/stdc++.h>
+using namespace std;
+#define res cin>>a>>b; cin>>s>>d;
+int n,m,s,a,b,d[11];
+int main(){
+cin>>n>>m;
+while(m--)cin>>a>>b,d[b]+=a;
+for(int i=10;i>0&&n>0;i--)s+=i*min(n,d[i]),n-=d[i];
+cout<<s;
+}
+
+
+A long time ago, in a galaxy far far away
+
+#include<bits/stdc++.h>
+
+int a,i;
+int main()
+{std::string s,t;
+std::cin>>s>>t;
+for(i=s.find(t);i+1;++a,i=s.find(t,i+t.size()));std::cout<<a;}
+
+
+
+the spring is coming and it means that a lot 
+
+#include<bits/stdc++.h>
+using namespace std;
+map <string,int> p;
+int n,m,g[102],c[102],cnt;
+string s;
+int main()
+{
+	cin>>n>>m;
+	for(int i=0;i<n;i++)
+		cin>>g[i];
+	sort(g,g+n);
+	for(int i=0;i<m;i++){
+		cin>>s;
+		if(!p[s])p[s]=++cnt;
+		c[p[s]]++;
+	}
+	sort(c+1,c+cnt+1);
+	int num=0;
+	for(int i=1;i<=cnt;i++)
+		num+=c[i]*g[cnt-i];
+	cout<<num<<" ";
+	num=0;
+	for(int i=1;i<=cnt;i++)
+		num+=c[i]*g[n-cnt+i-1];
+	cout<<num;
+	return 0;
+}
+
+
+
+If There are n banks in the city where vishnu lives 
+
+#include<bits/stdc++.h>
+using namespace std;
+#define maxs long long
+
+map <maxs,maxs> a;
+maxs i,n,k,x,p;
+int main(){
+    cin>>n;
+    for(;i<n;i++)cin>>x,k+=x,a[k]++,p=max(p,a[k]);
+    cout<<n-p;
+}
