@@ -1,0 +1,524 @@
+SESSION 1:-
+################In the following figure, you can see a rectangular :-
+#include <bits/stdc++.h>
+using namespace std;
+void solve(){
+ cout<<"return(l-2*x)*(b-2*x)*x;";
+}
+int main()
+{
+ int tc;
+ double a, b, c, res, l, w, x;
+ scanf(" %d", &tc);
+ while(tc--) {
+ scanf(" %lf %lf", &l, &w);
+ a = 12.0;
+ b = -4.0 * (l+w);
+ c = l*w;
+ x = (-b - sqrt (b*b - 4.0*a*c)) / (2.0*a);
+ res = (l - 2*x) * (w - 2*x) * x;
+ printf ("%.9f\n", res);
+ }
+ return 0;
+}
+###########################Mr. somu has another problem for Agi today.
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+ int t;
+ cin>>t;
+ while(t--){
+ int b,n,r;
+ cin>>b>>n>>r;
+ int z=1;
+ for(int i=1;i<=n;i++){
+ z=z*i;
+ }
+ int res;
+ res=pow(b,z);
+ cout<<res%r<<endl;
+ }
+return 0;
+cout<<"if(n%2==1)";
+}
+#############################Major Kathiravan has a chart of distinct :-
+#include<bits/stdc++.h>
+#define f(n) for(int i=0;i<n;i++)
+using namespace std;
+int main()
+{
+ int n;
+ cin>>n;
+ int arr[n];
+ int res=10000;
+ f(n){
+ cin>>arr[i];
+ }
+ f(n){
+ for(int j=i+1;j<n;j++){
+ if(arr[i]>arr[j]){
+ res=min(res,arr[i]-arr[j]);
+ }
+ }
+ }
+ cout<<res;
+return 0;
+cout<<"while";
+}
+######################################The allies are trying to get a message
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){ cout<<"break;"; }
+int main(){
+ string s1,s2,s3,s4;
+ double r;
+ double h;
+ cin>>s1>>r>>s2>>s3>>s4;
+ if(s2=="FEET")
+ r=r/3.28;
+ //cout<<r<<endl;
+ if(s2=="KILOMETERS") r=r*1000;
+ if(s2=="YARDS") r=r*0.9144;
+ if(s2=="INCHES") r=r*0.0254;
+ if(s2=="MILES") r=r*1609.34;
+ if(s4=="HOUR") r=r/3600;
+ if(s4=="MINUTE") r=r/60;
+ if(s2=="CENTIMETERS") r=r/100;
+ h=r*r/(2*9.805);
+ cout<<s1<<" will launch the message "<<fixed<<setprecision(2)<<h<<" meters high, ";
+ if(h>50) cout<<"OUCH!";
+ else if(h<25) cout<<"SPLAT!";
+ else cout<<"SUCCESS!";
+return 0; }
+################################Given ‘m’ positive integers denoting an upgrading map :-
+#include <bits/stdc++.h>
+using namespace std;
+#define f(n) for(i=0;i<n;i++)
+#define g(n) for(i = 1; i < n; i++)
+#define k(n) for(i=n-2;i>=0;i--)
+int maxWater(int arr[], int n)
+{
+ int left[n],i;
+ int right[n];
+ int water = 0;
+ left[0] = arr[0];
+ g(n)
+ left[i] = max(left[i - 1], arr[i]);
+ right[n - 1] = arr[n - 1];
+ k(n)
+ right[i] = max(right[i + 1], arr[i]);
+ for(i = 1; i < n-1; i++)
+ {
+ int var=min(left[i-1],right[i+1]);
+ if(var > arr[i])
+ {
+ water += var - arr[i];
+ }
+ }
+ return water;
+}
+int main()
+{
+ int n,i;
+ cin>>n;
+ int arr[n];
+ f(n){
+ cin>>arr[i];
+ }
+cout << maxWater(arr, n);
+return 0;
+}
+######################################The Mask ate a block of dynamite to save :-
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+ float a,c,d;
+ string b;
+ cin>>a>>b>>c;
+ float res;
+ int z=b.size();
+ if(z==1)
+ d=b[0]-48;
+ else
+ d=(float)(b[0]-48)/(b[2]-48);
+ res=a*d*0.45*7.5;
+ if(res>c){
+ cout<<res<<" the Mask should not eat it!";
+ }
+ else
+ cout<<fixed<<setprecision(2)<<res<<" the Mask can eat it!";
+return 0;
+cout<<"for";
+}
+#########################################There is a Gangaroo initially placed at the :-
+#include <stdio.h>
+int main(){
+int x,y,s,t,i,j,count=0;
+scanf("%d", &x);
+scanf("%d", &y);
+scanf("%d", &s);
+scanf("%d", &t);
+for(i=x;i<=x+s;i++){
+ for(j=y;j<=y+s;j++){
+ if(i+j<=t)
+ count++;
+ }
+}
+printf("%d",count);
+return 0;
+printf("if(s>=t)if(s<=t/2)");
+}
+##############################################Inspector Gadget just installed new springs :-
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+ string s1,s2,s3,s4,s5,s6;
+ cin>>s1>>s2>>s3>>s4>>s5>>s6;
+ float a,b,c;
+ if(s2=="?"){
+ b=stof(s4);
+ c=stof(s6);
+ //cout<<c;
+ cout<<"F "<<fixed<<setprecision(2)<<(-b)*c;
+ }
+ else if(s4=="?"){
+ a=stof(s2);
+ c=stof(s6);
+ cout<<"K "<<fixed<<setprecision(2)<<a/(-c);
+ }
+ else
+ {
+ a=stof(s2);
+ b=stof(s4);
+ cout<<"X "<<fixed<<setprecision(2)<<a/(-b);
+ }
+ return 0;
+}
+#################################A double-square number is an integer Y which can be :-
+#include <bits/stdc++.h>
+using namespace std;
+int sumSquare(int n)
+{
+ int res=0;
+for (long i = 0; i * i <= n; i++)
+for (long j = i; j * j <= n; j++)
+if ((i * i + j * j == n) ) {
+res++;
+}
+return res;
+}
+int main()
+{
+ int t;
+ cin>>t;
+ int i=1;
+ while(t--){
+ int n;
+ cin>>n;
+ cout<<"Line #"<<i<<": "<<sumSquare(n)<<endl;
+ i++;
+ }
+return 0;
+cout<<"for(i=0;i<=sqrt(y);i++) for(j=0;j<=i;j++)";
+}
+##################################Given two integers: ‘b’ and ‘a’
+#include <iostream>
+using namespace std;
+int main()
+{
+int t;
+long long m;
+long long n;
+long long ans;
+scanf("%d", &t);
+for (int cs = 1; cs <= t; cs++) {
+scanf("%lld %lld", &n, &m);
+ans = (n * m ) / 2;
+printf("%lld\n",ans);
+}
+}
+###########################3SESSION 2:-
+############################Great news! You get to go to Japan :-
+#include<iostream>
+using namespace std;
+int main()
+{
+ int items;
+ int a,j,cnt=0;
+ cin>>a>>items;
+ int c[items];
+ string s[items];
+ for(j=0;j<items;j++){
+ cin>>s[j]>>c[j];
+ if(c[j]<a){
+ cout<<"I can afford "<<s[j]<<endl;
+ a=a-c[j];
+ }
+ else{
+ cnt++;
+ cout<<"I can't afford "<<s[j]<<endl;
+ }
+ //cout<<cnt;
+ }
+ if(cnt==items)
+ cout<<"I need more Yen!";
+ else
+ cout<<a;
+return 0;
+cout<<"for(i=1;i<=yen;i++) int i,j;";
+}
+#####################################Scrooge Mcduck’s vault is practically :-
+#include<iostream>
+using namespace std;
+int main()
+{
+ int p,q,r,i;
+ int c;
+ cin>>c;
+ for(i=0;i<c;i++){
+ cin>>p>>q>>r;
+ q=q+(r-1)/5;
+ r=(r-1)%5+1;
+ p=p+(q-1)/10;
+ q=(q-1)%10+1;
+ cout<<p<<" ";
+ cout<<q<<" ";
+ cout<<r<<endl;
+ }
+return 0;
+}
+#######################################Tina owns a match making company, which even to her :-
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+ int t,n;
+ cin>>t;
+ while(t--){
+ cin>>n;
+ int a[n],b[n],sum=0;
+ for(int i = 0;i<n;i++)
+ cin>>a[i];
+ for(int i=0;i<n;i++)
+ cin>>b[i];
+ sort(a,a+n);
+ sort(b,b+n);
+ for(int i=0;i<n;i++){
+ if(a[i]%b[n-i-1]==0 || b[n-i-1]%a[i]==0)
+ sum++;
+ }
+ cout<<sum<<endl;
+ }
+return 0;
+}
+###########################Ace ventura, pet detective, is on the hunt for a rare :-
+#include<bits/stdc++.h>
+using namespace std;
+#define p1 cout<<"Ace, move fast, pigeon is at ("<<i<<",0)";
+#define p2 cout<<"Ace, move fast, pigeon is at ("<<(i-i/z)%z<<","<<i/z<<")";
+#define p3 cout<<"No pigeon, try another map, Ace";
+#define a continue;
+#define f(n) for(int i=0;i<z;i++)
+#define while1 while((scanf("%c",&s[i])) != EOF)
+int main(){
+ string s1; cin>>s1;
+ int z=s1.size();
+ f(n){
+ if(s1[i]=='P'){ p1
+ return 0;}
+ }
+ //cout<<z<<endl;
+ int i=0,cnt=0;
+ char s[10000];
+ while1 {
+ if(s[i]=='P'){
+ cnt=1;
+ break;
+ }
+ i++;
+ }
+
+ if(cnt==1) p2
+ else p3 }
+####################################The sapphire consulting and marketing company is adding :-
+#include <stdio.h>
+#include <stdlib.h>
+int isqrt(n) int n; {
+int i;
+for(i=0;i*i<n;i++);
+return i;
+}
+int main() {
+int c;
+int t,h,s,i,j;
+int d;
+scanf("%d",&c);
+for(i=0;i<c;i++) {
+s=0;
+scanf("%d %d",&t,&h);
+d=isqrt(t);
+s+=t+(d*4);
+for(j=1;j<h;j++) {
+s+=3;
+s+=(d+j)*4;
+if((d+j)>2)
+s+= (d+j-2)*2;
+}
+printf("%d liters\n",s);
+}
+return 0;
+}
+#####################3##########Ganesan has a string S consisting of lowercase:-
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+ string s,s2;
+ cin>>s>>s2;
+ int z = s.length();
+ int i;
+ int a[z];
+ for(i=0;i<(int)s.length();i++){
+ a[i]=s[i+1]-s[i];
+ }
+ for(int i=0;i<z-2;i++){
+ if(a[i]!=a[i+1]){
+ cout<<"No";
+ return 0;}
+ }
+ cout<<"Yes";
+return 0;
+}
+#################################RSA is a public key cryptosystem.
+#include <bits/stdc++.h>
+using namespace std;
+void solve(){
+ cout<<"break;";
+}
+bool isProduct(int num)
+{
+int cnt = 0;
+for (int i = 2; cnt < 2 && i * i <= num; ++i) {
+while (num % i == 0) {
+num /= i;
+++cnt;
+}
+}
+if (num > 1)
+++cnt;
+return cnt == 2;
+}
+void findNumbers(int N)
+{
+vector<int> vec;
+for (int i = 1; i <= N; i++) {
+if (isProduct(i) ) {
+vec.push_back(i);
+}
+}
+cout<<vec.size()<<endl;
+}
+int main()
+{
+ int t,N;
+ cin>>t;
+ while(t--){
+ cin>>N;
+ findNumbers(N);
+ }
+return 0;
+}
+#################################ROYGBIV isn’t just an acronym, it’s a way of life :-
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){
+ cout<<"for break;";
+}
+int main()
+{
+ int t=4;
+ while(t--){
+ string s1,s2;
+ cin>>s1>>s2;
+ if(s2=="WHITE")
+ cout<<"LIGHT "<<s1<<endl;
+ else if(s2=="BLACK")
+ cout<<"DARK "<<s1<<endl;
+ else if(s1=="WHITE")
+ cout<<"LIGHT "<<s2<<endl;
+ else if(s1=="BLACK")
+ cout<<"DARK "<<s2<<endl;
+ else if((s1=="RED"&&s2=="YELLOW")||(s1=="YELLOW"&&s2=="RED"))
+ cout<<"ORANGE"<<endl;
+ else if((s1=="BLUE"&&s2=="YELLOW")||(s1=="YELLOW"&&s2=="BLUE"))
+ cout<<"GREEN"<<endl;
+ else if((s1=="BLUE"&&s2=="RED")||(s1=="RED"&&s2=="BLUE"))
+ cout<<"PURPLE"<<endl;
+ else if(s1==s2)
+ cout<<s1<<endl;
+ else
+ cout<<"N/A"<<endl;
+ }
+return 0;
+}
+#############################The people of vadipatti have decided to paint each of their villas :-
+#include<bits/stdc++.h>
+using namespace std;
+#define fainou ios_base::sync_with_stdio(false);cin.tie(NULL)
+#define ll long long
+#define mod 1000000007
+void solve(){
+ cout<<"for(i=0;i<tc;i++) for(j=0;j<N;j++)for(j=1;j<N;j++)";
+}
+int main(){
+fainou;
+ll t;
+cin>>t;
+int i=1;
+while(t--){
+ ll n;
+cin>>n;
+ll a[n][3],ans;
+cin>>a[0][0]>>a[0][1]>>a[0][2];
+for(ll i=1;i<n;i++){
+cin>>a[i][0]>>a[i][1]>>a[i][2];
+a[i][0]+=min(a[i-1][1],a[i-1][2]);
+a[i][1]+=min(a[i-1][0],a[i-1][2]);
+a[i][2]+=min(a[i-1][0],a[i-1][1]);
+}
+ans=min(a[n-1][0],a[n-1][1]);
+ans=min(a[n-1][2],ans);
+cout<<"Line "<<i++<<": "<<ans<<"\n";
+}
+}
+#####################Shankar is a volleyball trainer at government school in madurai:-
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long LL;
+const int N = (int) 1e6 + 6, mod = (int) 0;
+int a[N];
+long long sum[N];
+int main() {
+int tc;
+cin >> tc;
+for (int tt = 1; tt <= tc; ++tt) {
+int n, p;
+cin >> n >> p;
+for (int j = 0; j < n; ++j)
+cin >> a[j];
+sort(a, a + n);
+int i;
+for(i=0;i<n;i++)
+sum[i + 1] = sum[i] + a[i];
+long long res = 1e18;
+for (int j = p - 1; j < n; ++j) {
+long long s = sum[j + 1] - sum[j - (p - 1)];
+long long cost = (LL) a[j] * p - s;
+res = min(res, cost);
+}
+cout << res << '\n';
+}
+}
