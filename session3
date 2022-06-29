@@ -1,0 +1,384 @@
+Maakesh caught the trail of the ancient book
+#include<bits/stdc++.h>
+using namespace std;
+#define f(n) for(int i=1;i<=n;i++)
+#define g(n) for(int i=1;i<n;i++)
+const int N=100005;
+vector<int>e[N];
+int can[N],d1[N],d2[N],d3[N],n,m,d,p1,p2,ans;
+void dfs(int u,int f,int* d){
+	d[u]=d[f]+1;
+	for(int i=0;i<(int)e[u].size();i++)
+		if(e[u][i]!=f)
+			dfs(e[u][i],u,d); 
+}
+int main(){
+	cin>>n>>m>>d;
+	f(m) {
+		int p;
+		scanf("%d",&p);
+		can[p]=1;
+	}
+	g(n) {
+		int a,b;
+		scanf("%d%d",&a,&b);
+		e[a].push_back(b);
+		e[b].push_back(a);
+	}
+	dfs(1,0,d1);
+	f(n)
+		if(can[i]&&d1[i]>d1[p1])
+			p1=i;
+	dfs(p1,0,d2);
+	f(n)
+		if(can[i]&&d2[i]>d2[p2])
+			p2=i;
+	dfs(p2,0,d3);
+	f(n)
+		if(d2[i]<=d+1&&d3[i]<=d+1)
+			ans++;
+	printf("%d\n",ans);
+	return 0;
+	cout<<"void evil(int u,int p=0)";
+}
+
+
+Padmavati is a clever girl and she wants to participate 
+#include<bits/stdc++.h>
+using namespace std;
+#define ll int64_t
+ll fen[1000001]{0},sum,ans=0;
+void upd(int i,int c){
+	for(;i<=1000000;i+=i&-i) fen[i]+=c;
+}
+ll que(int i){
+	for(sum=0;i;i-=i&-i) sum+=fen[i];
+	return sum;
+}
+int main(){
+	int n;
+	cin>>n;
+	int a[n];
+	map<int,int>pre,suff;
+	for(int i=0;i<n;++i) cin>>a[i];
+	for(int i=n-1;i>=0;--i) upd(++suff[a[i]],1);
+	for(int i=0;i<n;++i){
+		upd(suff[a[i]]--,-1);
+		ans+=que(pre[a[i]]++);
+	}
+	cout<<ans;
+}
+
+
+
+In this problem you will meet the simplified model of game Pudding monsters.
+
+#include <bits/stdc++.h>
+#define fi first
+#define se second
+#define lo long long 
+#define inf 1000000009
+#define md 1000000007
+#define li 300005
+#define mp make_pair
+#define pb push_back
+using namespace std;
+int n,x,y,v[li],a[li],b[li],mn[li],mx[li],g[li];
+lo int ans;
+void work(int *a,int *b){
+	int n=a[0],m=b[0];
+	mn[m+1]=0;
+	for(int i=1;i<=m;i++){
+		mn[i]=min(mn[i-1],b[i]);
+		mx[i]=max(mx[i-1],b[i]);
+	}
+	int mna=inf,mxa=0;
+	int l=1,r=1;
+	for(int i=1;i<=n;i++){
+		mna=min(mna,a[i]);
+		mxa=max(mxa,a[i]);
+		int d=mxa-mna+1-i;
+		if(d>0 && d<=m && mn[d]>mna && mx[d]<mxa) ans++;
+		for( ;mn[r]>mna;r++) g[mx[r]-r]++;
+		for( ;l<r&&mx[l]<mxa;l++) g[mx[l]-l]--;
+		ans+=g[mna+i-1];
+	}
+	for(int i=l;i<r;i++) g[mx[i]-i]=0;
+}
+void solve(int l,int r){
+	if(l==r) return ;
+	int mid=(l+r)/2;
+	a[0]=mid-l+1;b[0]=r-mid;
+	for(int i=l;i<=mid;i++) a[mid+1-i]=v[i];
+	for(int i=mid+1;i<=r;i++) b[i-mid]=v[i];
+	work(a,b),work(b,a);
+	solve(l,mid);solve(mid+1,r);
+}
+int main(){
+	cin>>n;
+	for(int i=1;i<=n;i++){
+		cin>>x>>y;
+		v[x]=y;
+	}
+	mn[0]=inf;
+	solve(1,n);
+	printf("%lld\n",ans+n);
+	return 0;
+}
+
+
+
+
+Now sabanayagam becomes a commander of Ladakh. 
+
+#include <bits/stdc++.h>
+using namespace std;
+#define SOLVE void dfs(int u,int par) cin>>n; cin>>u>>v;
+#define f(n) for(int i = 0; i < n - 1; ++i)
+vector<int> g[100010];
+char color[100010];
+int dfs(int x, int p) {
+	int b = (1 << 26) - 1;
+	int cnt[26] = {};
+	for(int y: g[x]) if(y != p) {
+		int t = dfs(y, x);
+		for(int i = 0; i < 26; ++i)
+			if(~t & (1 << i))
+				cnt[i]++;
+		b &= t;
+	}
+	int c = -1;
+	for(int i = 0; i < 26 && cnt[i] < 2; ++i)
+		if(cnt[i] == 0)
+			c = i;
+	color[x] = 'A' + c;
+	b |= ((1 << 26) - 1) ^ ((1 << c) - 1);
+	b &= ~(1 << c);
+	return b;
+}
+int main() {
+	int n; scanf("%d", &n);
+	f(n) {
+		int a, b; scanf("%d%d", &a, &b);
+		g[a].push_back(b);
+		g[b].push_back(a);
+	}
+	dfs(1, 0);
+	for(int i = 1; i <= n; ++i) printf("%c%c", color[i], " \n"[i == n]);
+}
+
+
+Let P be an array consisting of N numbers. The array’s 
+
+#include <stdio.h>
+
+int md;
+
+int s(int n) {
+	return (n % 2 == 0 ? (n / 2 % md) * ((n + 1) % md) : (n % md) * ((n + 1) / 2 % md)) % md;
+}
+
+int sum, cnt;
+
+void queries(long long n, long long k, long long a) {
+	int sum0, cnt0, sum1, cnt1;
+
+	if (k <= 0 || a <= 0)
+		sum = cnt = 0;
+	else if (k >= n) {
+		if (a > n)
+			a = n;
+		sum = s(a), cnt = a % md;
+	} else {
+		queries((n + 1) / 2, k, (a + 1) / 2), sum0 = sum, cnt0 = cnt;
+		queries(n / 2, k - (n + 1) / 2, a / 2), sum1 = sum, cnt1 = cnt;
+		sum = ((long long) sum0 * 2 - cnt0 + md + sum1 * 2) % md;
+		cnt = (cnt0 + cnt1) % md;
+	}
+}
+
+int main() {
+	int n;
+	int m;
+
+	scanf("%d%d%d",&n,&m,&md);
+	while (m--) {
+		long long l, r, a, b;
+		int ans;
+
+		scanf("%lld%lld%lld%lld", &l, &r, &a, &b), l--, a--;
+		ans = 0;
+		queries(n, r, b), ans = (ans + sum) % md;
+		queries(n, r, a), ans = (ans - sum + md) % md;
+		queries(n, l, b), ans = (ans - sum + md) % md;
+		queries(n, l, a), ans = (ans + sum) % md;
+		printf("%d\n", ans);
+	}
+	return 0;
+}
+
+
+
+Fazil is an unemployed computer scientist who spends his days working at odd-jobs.
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+const int inf = 1e9;
+const int N = 62;
+char word[N];
+ll dp[N][N];
+long long calculate(int s,int e) {
+    if (s > e) return 0;
+    if (s ==e) return 1;
+    ll &p = dp[s][e];
+    if (p != -1) return p;
+    p = 0;
+    if (word[s] == word[e]) p = 1 + calculate(s+1, e-1);
+    p += (calculate (s+1, e) + calculate (s, e-1) - calculate (s+1, e-1));
+    return p;
+}
+int main ()
+{
+    ll res;
+        cin>>word;
+        memset (dp, -1, sizeof (dp));
+        res = calculate (0, strlen(word)-1);
+        printf ("%lld\n", res);
+
+    return 0;
+}
+
+
+
+A set of points on a plane is called fair, if for any two points at least one of the three 
+
+#include<bits/stdc++.h>
+using namespace std;
+void fiv(int l,int r){
+    cout<<"cin>>n;cin>>a[i].first>>a[i].second;";
+}
+pair<int,int>p[10010];
+set<pair<int,int> >s;
+
+void dfs(int l,int r)
+{
+	if(l==r)
+	{
+		s.insert(p[l]);
+		return;
+	}
+	int i,mid=(l+r)/2;
+	dfs(l,mid);
+	dfs(mid+1,r);
+	for(i=l;i<=r;i++) s.emplace(p[mid].first,p[i].second);
+}
+
+int main()
+{
+	int n,i;
+	scanf("%d",&n);
+	for(i=1;i<=n;i++) scanf("%d%d",&p[i].first,&p[i].second);
+	sort(p+1,p+n+1);
+	dfs(1,n);
+	printf("%d\n",(int)s.size());
+	for(auto it:s) printf("%d %d\n",it.first,it.second);
+	return 0;
+}
+
+
+Teja has given a permutation of numbers from 1 to n. 
+
+#include<bits/stdc++.h>
+using namespace std;
+int a[300010],n,p[300010];
+void update(int t,int l,int r,int x){
+    cout<<"int query(int t,int l,int r,int L,int R)cin>>x;";
+}
+int main()
+{
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++)
+	{
+	    scanf("%d",&a[i]);
+	    p[a[i]]=i;
+	}
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=i+1;j<=min(n,i+5);j++)
+		{
+			if(a[i]*2-a[j]>0&&a[i]*2-a[j]<=n&&p[a[i]*2-a[j]]<i)
+			    return puts("YES"),0;
+			if(a[j]*2-a[i]>0&&a[j]*2-a[i]<=n&&p[a[j]*2-a[i]]>j)
+			    return puts("YES"),0;
+		}
+	}
+	puts("NO");
+	return 0;
+}
+
+
+Programmer Sandhosh and you have a new year tree 
+
+#include <iostream>
+int L[1000005],N=4,P[1000005][20],Q,v,i,p=2,q=3,d=2;
+using namespace std;
+int lca(int x,int y){
+    cout<<"int dis(int x,int y) cin>>u;";
+    return 1;
+}
+int f(int a, int b)
+{
+    if(L[a]<L[b])swap(a,b);
+    for(i=0;i<20;i++)if((L[a]-L[b])&(1<<i))a=P[a][i];
+    for(i=19;i>=0;i--)if(P[a][i]!=P[b][i])a=P[a][i],b=P[b][i];
+    return P[a][0];
+}
+int main()
+{
+    L[2]=L[3]=L[4]=1,P[2][0]=P[3][0]=P[4][0]=1;
+    cin>>Q;
+    while(Q--)
+    {
+        cin>>v;
+        L[N+1]=L[N+2]=L[v]+1,P[N+1][0]=P[N+2][0]=v,N+=2;
+        for(i=1;i<20;i++)P[N][i]=P[P[N][i-1]][i-1],P[N-1][i]=P[P[N-1][i-1]][i-1];
+        if(L[N]+L[p]-2*L[f(N,p)]>d)q=N,d++;
+        if(L[N]+L[q]-2*L[f(N,q)]>d)p=N,d++;
+        cout<<d<<"\n";
+    }
+}
+
+
+
+Leopard is in the amusement park. And now she is in a queue 
+
+#include<iostream>
+using namespace std;
+inline int getint(){
+char c;
+while((c=getchar())<'0'||c>'9');return c-'0';
+}
+const int N=4005,inf=.5e9;
+int n,k,sum[N][N],f[N],g[N];
+int main(){
+cin>>n>>k;
+for(int i=1;i<=n;i++)
+for(int j=1;j<=n;j++)
+sum[i][j]=sum[i-1][j]+sum[i][j-1]-sum[i-1][j-1]+getint();
+g[n+1]=n;
+for(int kk=2;kk<=k;kk++)
+for(int i=n;i;i--){
+f[i]=-inf;
+for(int j=g[i];j<=g[i+1]&&j<i;j++){
+int now=f[j]-sum[j][j]+sum[j][i];
+if(now>f[i]){
+f[i]=now;
+g[i]=j;
+}
+}
+}
+printf("%d\n",sum[n][n]/2-f[n]);
+}
+
+
