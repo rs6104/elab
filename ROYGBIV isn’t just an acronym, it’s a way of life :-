@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(){
+ cout<<"for break;";
+}
+int main()
+{
+ int t=4;
+ while(t--){
+ string s1,s2;
+ cin>>s1>>s2;
+ if(s2=="WHITE")
+ cout<<"LIGHT "<<s1<<endl;
+ else if(s2=="BLACK")
+ cout<<"DARK "<<s1<<endl;
+ else if(s1=="WHITE")
+ cout<<"LIGHT "<<s2<<endl;
+ else if(s1=="BLACK")
+ cout<<"DARK "<<s2<<endl;
+ else if((s1=="RED"&&s2=="YELLOW")||(s1=="YELLOW"&&s2=="RED"))
+ cout<<"ORANGE"<<endl;
+ else if((s1=="BLUE"&&s2=="YELLOW")||(s1=="YELLOW"&&s2=="BLUE"))
+ cout<<"GREEN"<<endl;
+ else if((s1=="BLUE"&&s2=="RED")||(s1=="RED"&&s2=="BLUE"))
+ cout<<"PURPLE"<<endl;
+ else if(s1==s2)
+ cout<<s1<<endl;
+ else
+ cout<<"N/A"<<endl;
+ }
+return 0;
+}
